@@ -7,7 +7,10 @@ from wordcloud import WordCloud
 
 
 def color_func(word, font_size, position, orientation, random_state=None, **kwargs):
-    return "rgb(%d, %d, %d)" % (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+    color = "rgb(%d, %d, %d)" % (random.randint(0, 255),
+                                 random.randint(0, 255),
+                                 random.randint(0, 255))
+    return(color)
 
 
 def main():
@@ -46,10 +49,6 @@ def main():
     words = random.sample(words, len(words))
     text = " ".join(words)
 
-    # mask = np.array(Image.open(os.path.join(os.getcwd(), 'tux-color.jpg')))
-
-    words = random.sample(words, len(words))
-    text = " ".join(words)
     wc = WordCloud(color_func=color_func, max_words=len(words), mask=None, stopwords=None,
                    margin=2, random_state=1, width=1920, height=1080).generate(text)
 
