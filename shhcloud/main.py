@@ -7,9 +7,9 @@ from wordcloud import WordCloud
 
 
 def color_func(word, font_size, position, orientation, random_state=None, **kwargs):
-    color = "rgb(%d, %d, %d)" % (random.randint(0, 255),
-                                 random.randint(0, 255),
-                                 random.randint(0, 255))
+    color = "rgb(%d, %d, %d)" % (random.randint(128, 255),
+                                 random.randint(128, 255),
+                                 random.randint(128, 255))
     return(color)
 
 
