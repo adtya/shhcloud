@@ -40,6 +40,8 @@ def main():
             if word == "|":
                 if split_command[loc+1] in valid_commands:
                     words.append(split_command[loc+1])
+                if split_command[loc+1] == 'sudo':
+                    words.append(split_command[loc+2])
 
     words = random.sample(words, len(words))
     text = " ".join(words)
