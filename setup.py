@@ -22,5 +22,12 @@ setup(
     include_package_data=True,
     install_requires=['wordcloud==1.5.0'],
 
-    entry_points={'console_scripts': ['shhcloud=shhcloud.main:main']}
+    entry_points={'console_scripts': ['shhcloud=shhcloud.main:main']},
+    classifiers=[
+        "Development Status :: 2 - Pre-Alpha",
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+        "Operating System :: POSIX",
+        "Programming Language :: Python :: 3",
+
+    ]
 )
