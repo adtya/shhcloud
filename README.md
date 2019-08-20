@@ -11,5 +11,5 @@ pip install -e . --user
 #### Usage
 
 ```sh
-sshcloud
+sshcloud # A file named wordcloud.jpg will be created in the current working directory
 ```
