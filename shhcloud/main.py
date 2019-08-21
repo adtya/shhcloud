@@ -2,7 +2,6 @@ import os
 import numpy as np
 import random
 import glob
-from PIL import Image
 from wordcloud import WordCloud
 
 
