@@ -2,6 +2,7 @@ import os
 import numpy as np
 import random
 import glob
+from collections import Counter
 from wordcloud import WordCloud
 
 
@@ -67,14 +68,12 @@ def main():
                 if split_command[loc+1] == 'sudo':
                     words.append(split_command[loc+2])
 
-    # Shuffle the words list (words repeating adjescently causes words to repeat in the picture)
-    words = random.sample(words, len(words))
-    # the below function needs the words to be part of a large string, so, join the above list
-    text = " ".join(words)
+    # Create a frequency table from the words list
+    freq_table = Counter(words)
 
-    # do the magic
+    # Do the magic with frequency table instead
     wc = WordCloud(color_func=color_func, max_words=len(words), mask=None, stopwords=None,
-                   margin=2, random_state=1, width=1920, height=1080).generate(text)
+                   margin=2, random_state=1, width=1920, height=1080).generate_from_frequencies(freq_table)
 
     # Save it to a file
     wc.to_file("wordcloud.jpg")
