@@ -3,12 +3,17 @@
 #### Installation:
 
 ```sh
-pip install shhcloud --user # doesn't work yet
-# Clone the repo and run
+pip install -i https://test.pypi.org/simple/ shhcloud --user
+```
+
+##### OR
+
+```sh
+git clone https://gitlab.com/adtya/shhcloud.git
 cd shhcloud && pip install -e . --user
 ```
 
-#### Usage
+#### Usage:
 
 ```sh
 shhcloud # A file named wordcloud.jpg will be created in the current working directory
