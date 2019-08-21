@@ -17,7 +17,7 @@ setup(
     author="Adithya Nair",
     author_email='adtya.nair@gmail.com',
     long_description=readme(),
-    long_description_type='text/markdown',
+    long_description_content_type='text/markdown',
     url="https://gitlab.com/adtya/shhcloud",
     packages=find_packages(),
     include_package_data=True,
