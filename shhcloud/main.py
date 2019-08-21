@@ -15,8 +15,9 @@ def color_func(word, font_size, position, orientation, random_state=None, **kwar
 
 def main():
     home_dir = os.environ['HOME']
-    command_dir = os.environ['PATH'].split(
-        ":")  # Get directories stored in $PATH
+    # Get directories stored in $PATH
+    command_dir = os.environ['PATH'].split(":")
+    shell = os.environ['SHELL']
 
     valid_commands = []
     # Get names of all files immediately in all of the above directories and add to valid_commands
@@ -27,6 +28,14 @@ def main():
     # Get shell's built in commands by running 'compgen -b' and add them to valid_commands
     built_in_commands = os.popen('compgen -b').read().split('\n')
     valid_commands.extend(built_in_commands)
+
+    # get aliases from shell
+    aliases = os.popen(shell + ' -i -c alias').read().split('\n')
+    if '' in aliases:
+        aliases.remove('')
+
+    aliases = {alias.replace('alias ', '').split('=')[0].replace("'", ''): alias.replace(
+        'alias ', '').split('=')[1].replace("'", '') for alias in aliases}
 
     # Open and read .bash_history
     bash_history = open(os.path.join(home_dir, ".bash_history"), "r")
@@ -42,6 +51,8 @@ def main():
         if parent in valid_commands:
             # if the parent command is a valid command, add it to words
             words.append(parent)
+        if parent in aliases.keys():
+            words.append(aliases[parent].split(" ")[0])
         if (parent == "sudo"):
             # If parent command is sudo, get the child command (ie, for 'sudo mv' get 'mv')
             child = split_command[1]
