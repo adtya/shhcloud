@@ -18,3 +18,10 @@ cd shhcloud && pip install -e . --user
 ```sh
 shhcloud # A file named wordcloud.jpg will be created in the current working directory
 ```
+
+#### Command line options:
+
+```sh
+-s <NUMBER1> <NUMBER2> # - save as a file with size NUMBER1xNUMBER2
+-f <FILENAME> # - saves as FILENAME
+```

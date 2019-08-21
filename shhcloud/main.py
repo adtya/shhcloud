@@ -1,7 +1,7 @@
-import os
-import numpy as np
-import random
 import glob
+import os
+import random
+import sys
 from collections import Counter
 from wordcloud import WordCloud
 
@@ -14,6 +14,41 @@ def color_func(word, font_size, position, orientation, random_state=None, **kwar
 
 
 def main():
+    arg_list = sys.argv
+    img_width = 1920
+    img_height = 1080
+    working_dir = os.getcwd()
+    save_file = os.path.join(working_dir + 'wordcloud.jpg')
+    if arg_list != []:
+        for loc, arg in enumerate(arg_list):
+            if arg == '-s':
+                try:
+                    w = arg_list[loc+1]
+                    h = arg_list[loc+2]
+                    if w.isnumeric() and h.isnumeric():
+                        print(w.isnumeric, h.isnumeric)
+                        img_width = w
+                        img_height = h
+                    else:
+                        printf("oops! width and height should be integers. the given values are ignored and",
+                               img_width, "and", img_height, "are used")
+                except:
+                    print("oops! width and height should be integers. the given values are ignored and",
+                          img_width, "and", img_height, "are used")
+            elif arg == '-f':
+                try:
+                    f = arg_list[loc+1]
+                    if f[0] == '.' and f[1].isalnum:
+                        save_file = os.path.join(working_dir, f[1, -1])
+                    elif f[0] == '/':
+                        save_file = f
+                    elif f[0].isalnum:
+                        save_file = os.path.join(working_dir, f)
+                except:
+                    print("invalid path, default(./wordcloud.jpg) will be used")
+            else:
+                pass
+
     home_dir = os.environ['HOME']
     # Get directories stored in $PATH
     command_dir = os.environ['PATH'].split(":")
@@ -73,10 +108,14 @@ def main():
 
     # Do the magic with frequency table instead
     wc = WordCloud(color_func=color_func, max_words=len(words), mask=None, stopwords=None,
-                   margin=2, random_state=1, width=1920, height=1080).generate_from_frequencies(freq_table)
+                   margin=2, random_state=1, width=int(img_width), height=int(img_height)).generate_from_frequencies(freq_table)
 
     # Save it to a file
-    wc.to_file("wordcloud.jpg")
+    # try:
+    wc.to_file(save_file)
+    # except:
+    #     print("oops! something went wrong while writing to the file")
+    #     exit(1)
 
 
 if __name__ == '__main__':
