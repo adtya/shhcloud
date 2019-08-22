@@ -18,7 +18,7 @@ def main():
     img_width = 1920
     img_height = 1080
     working_dir = os.getcwd()
-    save_file = os.path.join(working_dir + 'wordcloud.jpg')
+    save_file = os.path.join(working_dir, 'wordcloud.jpg')
     if arg_list != []:
         for loc, arg in enumerate(arg_list):
             if arg == '-s':
@@ -107,15 +107,15 @@ def main():
     freq_table = Counter(words)
 
     # Do the magic with frequency table instead
-    wc = WordCloud(color_func=color_func, max_words=len(words), mask=None, stopwords=None,
-                   margin=2, random_state=1, width=int(img_width), height=int(img_height)).generate_from_frequencies(freq_table)
+    wc = WordCloud(color_func=color_func, max_words=len(freq_table), width=int(img_width), height=int(
+        img_height)).generate_from_frequencies(freq_table)
 
     # Save it to a file
-    # try:
-    wc.to_file(save_file)
-    # except:
-    #     print("oops! something went wrong while writing to the file")
-    #     exit(1)
+    try:
+        wc.to_file(save_file)
+    except:
+        print("oops! something went wrong while writing to the file. Please check if the given path is writable")
+        exit(1)
 
 
 if __name__ == '__main__':
