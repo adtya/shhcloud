@@ -6,7 +6,7 @@ from collections import Counter
 from wordcloud import WordCloud
 
 
-def color_func(word, font_size, position, orientation, random_state=None, **kwargs):
+def color_func(word, _font_size, _position, _orientation, _random_state=None, **kwargs):
     color = "rgb({0}, {1}, {2})".format(
         random.randint(128, 255), random.randint(128, 255), random.randint(128, 255)
     )
@@ -89,8 +89,8 @@ def main():
     }
 
     # Open and read .bash_history
-    bash_history = open(os.path.join(home_dir, ".bash_history"), "r")
-    commands = bash_history.readlines()
+    with open(os.path.join(home_dir, ".bash_history"), "r") as bash_history:
+        commands = bash_history.readlines()
     # reomove unwanted \n and stuff from all the commands
     commands = [command.strip() for command in commands]
 
