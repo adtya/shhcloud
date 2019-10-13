@@ -6,7 +6,7 @@ from collections import Counter
 from wordcloud import WordCloud
 
 
-def color_func(word, _unused_font_size, _unused_position, _unused_orientation, _unused_random_state=None, **kwargs):
+def color_func(_unused_word, _unused_font_size, _unused_position, _unused_orientation, _unused_random_state=None, **kwargs):
     color = "rgb({0}, {1}, {2})".format(
         random.randint(128, 255), random.randint(128, 255), random.randint(128, 255)
     )
