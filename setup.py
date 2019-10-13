@@ -4,8 +4,8 @@ from shhcloud import __version__
 
 def readme():
     try:
-        with open("README.md") as readme:
-            return readme.read()
+        with open("README.md") as document:
+            return document.read()
     except:
         pass
 
