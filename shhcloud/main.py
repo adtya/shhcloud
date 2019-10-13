@@ -30,7 +30,7 @@ def main():
                         img_width = w
                         img_height = h
                     else:
-                        printf(
+                        print(
                             "oops! width and height should be integers. the given values are ignored and",
                             img_width,
                             "and",
