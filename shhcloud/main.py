@@ -1,6 +1,6 @@
 import glob
 import os
-import random
+import secrets
 import sys
 from collections import Counter
 from wordcloud import WordCloud
@@ -8,7 +8,8 @@ from wordcloud import WordCloud
 
 def color_func(_unused_word, _unused_font_size, _unused_position, _unused_orientation, _unused_random_state=None, **kwargs):
     color = "rgb({0}, {1}, {2})".format(
-        random.randint(128, 255), random.randint(128, 255), random.randint(128, 255)
+        secrets.randbelow(127)+128, secrets.randbelow(127) +
+        128, secrets.randbelow(127)+128
     )
     return color
 
@@ -37,7 +38,7 @@ def main():
                             img_height,
                             "are used",
                         )
-                except:
+                except Exception as e:
                     print(
                         "oops! width and height should be integers. the given values are ignored and",
                         img_width,
@@ -133,7 +134,7 @@ def main():
     # Save it to a file
     try:
         wc.to_file(save_file)
-    except:
+    except Exception as e:
         print(
             "oops! something went wrong while writing to the file. Please check if the given path is writable"
         )
